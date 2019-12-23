@@ -12,14 +12,12 @@ const ratingComponent = ({ isFilled }) => {
 };
 
 const List = ({props}) => {
-  console.log(styles);
   return (
     <ul className={styles.goodsList} > {
     props.map((item) => 
      ( 
       <li className={styles.goodsList__item} key={item.id}>
         <ProductItem 
-          key={item.id}
           isInStock={item.isInStock}
           img={item.img}
           title={item.title}
