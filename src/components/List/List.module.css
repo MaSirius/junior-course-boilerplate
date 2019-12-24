@@ -1,0 +1,14 @@
+.goodsList {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+}
+.goodsList__item {
+  max-width: 224px;
+  margin-bottom: 35px;
+  display: inline-block;
+}
+.goodsList__item:nth-child(3n+2) {
+  margin-left: 32px;
+  margin-right: 32px;
+}
