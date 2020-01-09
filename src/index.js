@@ -10,33 +10,33 @@ import Filter from './components/Filter/Filter';
 
 class App extends React.Component  {
 	constructor(props) {
-  		super(props);
-  		this.state = {
-  			minPrice: minBy(obj => obj.price, products).price,
-  			maxPrice: maxBy(obj => obj.price, products).price, 
-  		}
-  	}
+		super(props);
+		this.state = {
+			minPrice: minBy(obj => obj.price, products).price,
+			maxPrice: maxBy(obj => obj.price, products).price, 
+		}
+	}
 	changeState = (min, max) => {
 		this.setState({ 
 			minPrice: min,
 			maxPrice: max,
 		});
 	}
-  	render() {
+	render() {
 		return (
-		  	<React.Fragment>
-	    		<Title>Список товаров</Title>
-	    		<Filter 
-	    			changeState = {this.changeState}
-	    			minPrice={this.state.minPrice}
-	    			maxPrice={this.state.maxPrice}
-	    		/>
-	      		<List 
-	      			products={products} 
-              		minPrice={this.state.minPrice}
-              		maxPrice={this.state.maxPrice}
-            	/>
-	    	</React.Fragment>
+			<React.Fragment>
+				<Title>Список товаров</Title>
+				<Filter 
+					changeState = {this.changeState}
+					minPrice={this.state.minPrice}
+					maxPrice={this.state.maxPrice}
+				/>
+				<List 
+					products={products} 
+					minPrice={this.state.minPrice}
+					maxPrice={this.state.maxPrice}
+				/>
+			</React.Fragment>
 		);
 	};
 }

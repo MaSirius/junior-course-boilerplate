@@ -12,13 +12,13 @@ class Filter extends logRender {
 		this.minInput = React.createRef();
 		this.maxInput = React.createRef();
 
-	    this.handleSubmit = this.handleSubmit.bind(this);
-	    this.handleInput = this.handleInput.bind(this);
-	    this.submit = React.createRef();
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleInput = this.handleInput.bind(this);
+		this.submit = React.createRef();
 	}
 	handleSubmit(event) {
-    	event.preventDefault();
-    	this.props.changeState(this.minInput.current.value, this.maxInput.current.value);
+		event.preventDefault();
+		this.props.changeState(this.minInput.current.value, this.maxInput.current.value);
 	}
 	handleInput(event) {
 		let val = Number(event.target.value.replace(/\s+/g,''));
