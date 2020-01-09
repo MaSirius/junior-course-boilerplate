@@ -1,0 +1,31 @@
+.filter {
+	left: 3.33%;
+	max-width: 246px;
+	position: absolute;
+}
+.filter__title {
+	font-size: 20px;
+	font-style: normal;
+}
+.filter__input {
+	padding: 8px 16px;
+	max-width: 55px;
+	margin-left: 10.5px;
+}
+.filter__label {
+	font-size: 14px;
+}
+.filter__label:first-child {
+    margin-right: 10.5px;
+}
+.filter__submit {
+	width: 100%;
+	color: white;
+	border: none;
+	padding: 9px;
+	margin-top: 24px;
+	background: #323C48;
+}
+.filter__submit:disabled {
+	background: #aaa;
+}
