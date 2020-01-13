@@ -21,8 +21,8 @@ class Filter extends logRender {
 		this.props.changeState(this.minInput.current.value, this.maxInput.current.value);
 	}
 	handleInput(event) {
-		let val = Number(event.target.value.replace(/\s+/g,''));
-		(val < 0 || isNaN(val)) ? this.submit.current.disabled = true : this.submit.current.disabled = false;
+		this.props.setDisabled(event.target.value);
+		this.submit.current.disabled = this.props.inputDisabled;
 	}
 	render() {
 		return (

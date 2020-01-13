@@ -14,8 +14,17 @@ class App extends React.Component  {
 		this.state = {
 			minPrice: minBy(obj => obj.price, products).price,
 			maxPrice: maxBy(obj => obj.price, products).price, 
+			inputDisabled: false,
 		}
 	}
+	setDisabled = (priceValue) => {
+		let disableInput = false;
+		let val = Number(priceValue.replace(/\s+/g,''));
+
+		if (val < 0 || isNaN(val)) disableInput = true;
+		this.setState({ inputDisabled: disableInput });
+	}
+
 	changeState = (min, max) => {
 		this.setState({ 
 			minPrice: min,
@@ -28,8 +37,10 @@ class App extends React.Component  {
 				<Title>Список товаров</Title>
 				<Filter 
 					changeState = {this.changeState}
+					setDisabled = {this.setDisabled}
 					minPrice={this.state.minPrice}
 					maxPrice={this.state.maxPrice}
+					inputDisabled={this.state.inputDisabled}
 				/>
 				<List 
 					products={products} 
