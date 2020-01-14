@@ -23,9 +23,11 @@
 	color: white;
 	border: none;
 	padding: 9px;
+	cursor: pointer;
 	margin-top: 24px;
 	background: #323C48;
 }
 .filter__submit:disabled {
+	cursor: default;
 	background: #aaa;
 }

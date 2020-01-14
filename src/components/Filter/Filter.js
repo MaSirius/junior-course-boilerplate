@@ -22,7 +22,6 @@ class Filter extends logRender {
 	}
 	handleInput(event) {
 		this.props.setDisabled(event.target.value);
-		this.submit.current.disabled = this.props.inputDisabled;
 	}
 	render() {
 		return (
@@ -53,6 +52,7 @@ class Filter extends logRender {
 						type="submit" 
 						value="Применить"
 						className={styles.filter__submit} 
+						disabled={this.props.inputDisabled}
 						ref={this.submit}
 					/>
 				</form>

@@ -18,11 +18,8 @@ class App extends React.Component  {
 		}
 	}
 	setDisabled = (priceValue) => {
-		let disableInput = false;
 		let val = Number(priceValue.replace(/\s+/g,''));
-
-		if (val < 0 || isNaN(val)) disableInput = true;
-		this.setState({ inputDisabled: disableInput });
+		this.setState({ inputDisabled: (val < 0 || isNaN(val)) ? true : false });
 	}
 
 	changeState = (min, max) => {
