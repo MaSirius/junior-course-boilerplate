@@ -6,22 +6,24 @@ import styles from './Filter.module.css';
 import logRender from '../../components/LogRender/LogRender';
 
 class Filter extends logRender {
-	constructor({props}) {
+	constructor(props) {
 		super(props);
-		
-		this.minInput = React.createRef();
-		this.maxInput = React.createRef();
+
+		this.min = this.props.minPrice;
+		this.max = this.props.maxPrice;
 
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleInput = this.handleInput.bind(this);
-		this.submit = React.createRef();
-	}
-	handleSubmit(event) {
-		event.preventDefault();
-		this.props.changeState(this.minInput.current.value, this.maxInput.current.value);
 	}
 	handleInput(event) {
+		if (event.target.name == 'minPrice') this.min = event.target.value;
+		if (event.target.name == 'maxPrice') this.max = event.target.value;
+		
 		this.props.setDisabled(event.target.value);
+	}
+	handleSubmit(event) {
+		event.preventDefault(event.target.value);
+		this.props.changeState(this.min, this.max);
 	}
 	render() {
 		return (
@@ -31,20 +33,20 @@ class Filter extends logRender {
 					<label className={styles.filter__label}>
 						от 
 						<input 
+							name='minPrice'
 							type='text' 
 							className={styles.filter__input}
 							defaultValue={toInt(this.props.minPrice)} 
-							ref={this.minInput} 
 							onInput={this.handleInput}
 						/> 
 					</label>
 					<label className={styles.filter__label}>
 						до  
 						<input
+							name='maxPrice'
 							type='text' 
 							className={styles.filter__input}
 							defaultValue={toInt(this.props.maxPrice)} 
-							ref={this.maxInput} 
 							onInput={this.handleInput}
 						/> 
 					</label>
@@ -53,13 +55,12 @@ class Filter extends logRender {
 						value="Применить"
 						className={styles.filter__submit} 
 						disabled={this.props.inputDisabled}
-						ref={this.submit}
+						onSubmit={this.handleSubmit}
 					/>
 				</form>
 			</div>
 		);
 	}
 }
-
 
 export default Filter;
