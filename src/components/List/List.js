@@ -3,15 +3,11 @@ import PropTypes from 'prop-types';
 import {toInt} from 'csssr-school-utils';
 
 import ProductItem from 'csssr-school-product-card';
-import starFill from './img/starFill.png';
-import starEmpty from './img/starEmpty.png';
 import logRender from '../../components/LogRender/LogRender';
+import ratingComponent from '../RatingComponent/RatingComponent';
 
 import styles from './List.module.css';
 
-const ratingComponent = ({ isFilled }) => {
-	return <img src={(isFilled) ? starFill : starEmpty} />;
-};
 class List extends logRender {
 	render() {
 		return (

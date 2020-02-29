@@ -16,10 +16,8 @@ class Filter extends logRender {
 		this.handleInput = this.handleInput.bind(this);
 	}
 	handleInput(event) {
-		if (event.target.name == 'minPrice') this.min = event.target.value;
-		if (event.target.name == 'maxPrice') this.max = event.target.value;
-		
-		this.props.setDisabled(event.target.value);
+		(event.target.name == 'minPrice') ? this.min = event.target.value : this.max = event.target.value;
+		this.props.errorСhecking(event.target.value, event.target.name, this.min, this.max);
 	}
 	handleSubmit(event) {
 		event.preventDefault(event.target.value);
@@ -35,7 +33,7 @@ class Filter extends logRender {
 						<input 
 							name='minPrice'
 							type='text' 
-							className={styles.filter__input}
+							className={`${styles.filter__input} ${(this.props.minPriceError) ? styles.filter__error : ''}`}
 							defaultValue={toInt(this.props.minPrice)} 
 							onInput={this.handleInput}
 						/> 
@@ -45,11 +43,13 @@ class Filter extends logRender {
 						<input
 							name='maxPrice'
 							type='text' 
-							className={styles.filter__input}
+							className={`${styles.filter__input} ${(this.props.maxPriceError) ? styles.filter__error : ''}`}
 							defaultValue={toInt(this.props.maxPrice)} 
 							onInput={this.handleInput}
 						/> 
 					</label>
+					<div className={styles.filter__errorBlock}>{this.props.minPriceError}</div>
+					<div className={styles.filter__errorBlock}>{this.props.maxPriceError}</div>
 					<input 
 						type="submit" 
 						value="Применить"
