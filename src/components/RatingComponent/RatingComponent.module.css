@@ -1,0 +1,13 @@
+.star {
+	width: 14px;
+	height: 13px;
+	display: inline-block;
+}
+
+.filled {
+	background-image: url(./img/starFill.png);
+}
+
+.empty {
+	background-image: url(./img/starEmpty.png);
+}

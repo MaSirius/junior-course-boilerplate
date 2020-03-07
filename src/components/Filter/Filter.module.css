@@ -1,0 +1,47 @@
+.filter {
+	left: 3.33%;
+	max-width: 246px;
+	position: absolute;
+}
+.filter__title {
+	font-size: 20px;
+	font-style: normal;
+}
+.filter__input {
+	padding: 8px 16px;
+	max-width: 55px;
+	margin-left: 10.5px;
+}
+.filter__label {
+	font-size: 14px;
+}
+.filter__label:first-child {
+	margin-right: 10.5px;
+}
+.filter__submit {
+	width: 100%;
+	color: white;
+	border: none;
+	padding: 9px;
+	cursor: pointer;
+	margin-top: 24px;
+	background: #323C48;
+}
+.filter__error {
+	border: 1px solid red;
+	box-shadow: 0 0 3px red;
+}
+.filter__errorBlock {
+	color: red;
+	float: left;
+	width: 115px;
+	line-height: 1;
+	font-size: 10px;
+	min-height: 1px;
+	margin-right: 8px;
+}
+
+.filter__submit:disabled {
+	cursor: default;
+	background: #aaa;
+} 

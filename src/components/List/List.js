@@ -1,48 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {toInt} from 'csssr-school-utils';
 
 import ProductItem from 'csssr-school-product-card';
-import starFill from './img/starFill.png';
-import starEmpty from './img/starEmpty.png';
+import logRender from '../../components/LogRender/LogRender';
+import ratingComponent from '../RatingComponent/RatingComponent';
 
 import styles from './List.module.css';
 
-const ratingComponent = ({ isFilled }) => {
-  return <img src={(isFilled) ? starFill : starEmpty} />;
-};
-
-const List = ({props}) => {
-  return (
-    <ul className={styles.goodsList} > {
-    props.map((item) => 
-     ( 
-      <li className={styles.goodsList__item} key={item.id}>
-        <ProductItem 
-          isInStock={item.isInStock}
-          img={item.img}
-          title={item.title}
-          price={item.price}
-          subPriceContent={item.subPriceContent}
-          maxRating={item.maxRating}
-          rating={item.rating}
-          ratingComponent={ratingComponent}
-        />
-      </li>
-    ))} </ul>
-  );
+class List extends logRender {
+	render() {
+		const {products, minPrice, maxPrice} = this.props;
+		return (
+			<ul className={styles.goodsList} > {
+				products.filter(item => 
+					toInt(item.price) >= toInt(minPrice) && 
+					toInt(item.price) <= toInt(maxPrice)
+				)
+				.map((item) => ( 
+					<li className={styles.goodsList__item} key={item.id}>
+						<ProductItem 
+							isInStock={item.isInStock}
+							img={item.img}
+							title={item.title}
+							price={item.price}
+							subPriceContent={item.subPriceContent}
+							maxRating={item.maxRating}
+							rating={item.rating}
+							ratingComponent={ratingComponent}
+						/>
+					</li>
+				))} 
+			</ul>
+		);
+	}
 };
 
 List.propTypes = {
-  isInStock: PropTypes.bool,
-  img: PropTypes.string,
-  title: PropTypes.string,
-  price: PropTypes.string,
-  subPriceContent: PropTypes.string,
-  maxRating: PropTypes.number,
-  rating: PropTypes.number,
-  ratingComponent: PropTypes.func,
+	isInStock: PropTypes.bool,
+	img: PropTypes.string,
+	title: PropTypes.string,
+	price: PropTypes.string,
+	subPriceContent: PropTypes.string,
+	maxRating: PropTypes.number,
+	rating: PropTypes.number,
+	ratingComponent: PropTypes.func,
 };
 
 
 export default List;
-

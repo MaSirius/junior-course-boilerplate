@@ -4,7 +4,7 @@
         "isInStock": true,
         "img": "https://img.freepik.com/free-vector/_1034-737.jpg?size=338&ext=jpg",
         "title": "Название первого товара",
-        "price": "23 000",
+        "price": "13 000",
         "subPriceContent": "",
         "rating": 3,
         "maxRating": 5
@@ -14,7 +14,7 @@
         "isInStock": false,
         "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2VoDBHrSA3jLwdaQMduEQWJ_z5fyncKpLH3cmZ33BHVsIJusF&s",
         "title": "Название первого товара",
-        "price": "23 000",
+        "price": "25 000",
         "subPriceContent": "",
         "rating": 3,
         "maxRating": 5
@@ -24,7 +24,7 @@
         "isInStock": true,
         "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlMP6QJgW692VUJ3dG3WbVSng5OcFEgRtn6_hq69jkIiDVeLUH&s",
         "title": "Название первого товара",
-        "price": "23 000",
+        "price": "14 000",
         "subPriceContent": "",
         "rating": 3,
         "maxRating": 5
@@ -34,7 +34,7 @@
         "isInStock": true,
         "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlMP6QJgW692VUJ3dG3WbVSng5OcFEgRtn6_hq69jkIiDVeLUH&s",
         "title": "Название первого товара",
-        "price": "23 000",
+        "price": "17 000",
         "subPriceContent": "",
         "rating": 3,
         "maxRating": 5
@@ -44,7 +44,7 @@
         "isInStock": true,
         "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2VoDBHrSA3jLwdaQMduEQWJ_z5fyncKpLH3cmZ33BHVsIJusF&s",
         "title": "Название первого товара",
-        "price": "23 000",
+        "price": "52 000",
         "subPriceContent": "",
         "rating": 3,
         "maxRating": 5
@@ -54,7 +54,7 @@
         "isInStock": false,
         "img": "https://img.freepik.com/free-vector/_1034-737.jpg?size=338&ext=jpg",
         "title": "Название первого товара",
-        "price": "23 000",
+        "price": "47 000",
         "subPriceContent": "",
         "rating": 3,
         "maxRating": 5
