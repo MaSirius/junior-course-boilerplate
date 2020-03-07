@@ -11,7 +11,6 @@ import Filter from './components/Filter/Filter';
 class App extends React.Component	{
 	constructor(props) {
 		super(props);
-		this.errorCheckingFunction = this.memoizer(this.errorСhecking);
 		
 		this.state = {
 			minPrice: minBy(obj => obj.price, products).price,
@@ -22,7 +21,7 @@ class App extends React.Component	{
 		}
 	}
 	setErrorMessage = (priceValue, priceName, min, max) => {
-		let errorText = this.errorCheckingFunction(priceValue, priceName, min, max);
+		let errorText = this.errorСhecking(priceValue, priceName, min, max);
 
 		let minPriceError = (priceName === 'minPrice') ? errorText : this.state.minPriceError;
 		let maxPriceError = (priceName === 'maxPrice') ? errorText : this.state.maxPriceError;
@@ -50,7 +49,7 @@ class App extends React.Component	{
 		}
 	}
 
-	errorСhecking = (priceValue, priceName, min, max) => {
+	errorСhecking = this.memoizer((priceValue, priceName, min, max) => {
 		let val = Number(priceValue.replace(/\s+/g,''));
 		min = Number(min.replace(/\s+/g,''));
 		max = Number(max.replace(/\s+/g,''));
@@ -65,7 +64,7 @@ class App extends React.Component	{
 			default: 
 				return '';
 		}
-	}
+	})
 
 	changeState = (min, max) => {
 		if (this.state.minPriceError === '' && this.state.maxPriceError === '') {
