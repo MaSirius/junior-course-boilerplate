@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {toInt} from 'csssr-school-utils';
+import cn from 'classnames';
 
 import styles from './Filter.module.css';
 import logRender from '../../components/LogRender/LogRender';
@@ -16,8 +17,8 @@ class Filter extends logRender {
 		this.handleInput = this.handleInput.bind(this);
 	}
 	handleInput(event) {
-		(event.target.name == 'minPrice') ? this.min = event.target.value : this.max = event.target.value;
-		this.props.errorСhecking(event.target.value, event.target.name, this.min, this.max);
+		(event.target.name === 'minPrice') ? this.min = event.target.value : this.max = event.target.value;
+		this.props.setErrorMessage(event.target.value, event.target.name, this.min, this.max);
 	}
 	handleSubmit(event) {
 		event.preventDefault(event.target.value);
@@ -32,8 +33,12 @@ class Filter extends logRender {
 						от 
 						<input 
 							name='minPrice'
-							type='text' 
-							className={`${styles.filter__input} ${(this.props.minPriceError) ? styles.filter__error : ''}`}
+							type='text'
+							className={cn(
+								styles.filter__input, {
+									[styles.filter__error]: this.props.minPriceError
+								})
+							}
 							defaultValue={toInt(this.props.minPrice)} 
 							onInput={this.handleInput}
 						/> 
@@ -43,7 +48,11 @@ class Filter extends logRender {
 						<input
 							name='maxPrice'
 							type='text' 
-							className={`${styles.filter__input} ${(this.props.maxPriceError) ? styles.filter__error : ''}`}
+							className={cn(
+								styles.filter__input, {
+									[styles.filter__error]: this.props.maxPriceError
+								})
+							}
 							defaultValue={toInt(this.props.maxPrice)} 
 							onInput={this.handleInput}
 						/> 

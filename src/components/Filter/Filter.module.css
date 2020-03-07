@@ -40,3 +40,8 @@
 	min-height: 1px;
 	margin-right: 8px;
 }
+
+.filter__submit:disabled {
+	cursor: default;
+	background: #aaa;
+} 

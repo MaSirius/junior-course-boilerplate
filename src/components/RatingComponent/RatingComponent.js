@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cn from 'classnames';
+
 import styles from './RatingComponent.module.css';
 
 class RatingComponent extends React.Component {
 	render() {
-		return <div className={`${styles.star} ${(this.props.isFilled) ? styles.filled : styles.empty}`}/>;
+		return <div className={cn(styles.star, {
+			[styles.filled]: this.props.isFilled,
+			[styles.empty]: !this.props.isFilled
+		})}/>;
 	}
 };
 

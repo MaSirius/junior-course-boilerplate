@@ -8,40 +8,62 @@ import Title from './components/Title/Title';
 import List from './components/List/List';
 import Filter from './components/Filter/Filter';
 
-class App extends React.Component  {
+class App extends React.Component	{
 	constructor(props) {
 		super(props);
+		this.errorCheckingFunction = this.memoizer(this.errorСhecking);
+		
 		this.state = {
 			minPrice: minBy(obj => obj.price, products).price,
 			maxPrice: maxBy(obj => obj.price, products).price,
 			minPriceError: '',
 			maxPriceError: '',
+			inputDisabled: false
 		}
 	}
-	setErrorMessage = (value, name) => {
+	setErrorMessage = (priceValue, priceName, min, max) => {
+		let errorText = this.errorCheckingFunction(priceValue, priceName, min, max);
+
+		let minPriceError = (priceName === 'minPrice') ? errorText : this.state.minPriceError;
+		let maxPriceError = (priceName === 'maxPrice') ? errorText : this.state.maxPriceError;
+
 		this.setState({ 
-			[name + 'Error']: value
+			[priceName + 'Error']: errorText,
+			inputDisabled: (minPriceError !== '' || maxPriceError !== '') ? true : false
 		});
+
 	}
+
+	memoizer = (fn) => {
+		let cache = {};
+		return function (priceValue, priceName, min, max) {
+			if (typeof cache[priceName] === 'undefined') cache[priceName] = {};
+			if (typeof cache[priceName][priceValue] !== 'undefined') {
+				if (cache[priceName][priceValue] === 'Максимальное значение фильтра меньше минимального') 
+					cache[priceName][priceValue] = fn(priceValue, priceName, min, max);
+				return cache[priceName][priceValue];
+			}
+			else { 
+				cache[priceName][priceValue] = fn(priceValue, priceName, min, max);
+				return cache[priceName][priceValue];
+			}
+		}
+	}
+
 	errorСhecking = (priceValue, priceName, min, max) => {
 		let val = Number(priceValue.replace(/\s+/g,''));
-		
 		min = Number(min.replace(/\s+/g,''));
 		max = Number(max.replace(/\s+/g,''));
 
-		if (isNaN(val)) { 
-			this.setErrorMessage('Введите число', priceName);
-		} else if (priceValue === '') { 
-			this.setErrorMessage('Введите значение фильтра', priceName);
-		} else if (val < 0) { 
-			this.setErrorMessage('Введите положительное число', priceName);
-		} else if (priceName === 'maxPrice' && val < min) {
-			this.setErrorMessage('Максимальное значение фильтра меньше минимального', priceName);
-		} else {
-			if (priceName === 'minPrice') {
-				(val > max) ? this.setErrorMessage('Максимальное значение фильтра меньше минимального', 'maxPrice') : this.setErrorMessage( '',  'maxPrice');
-			}
-			this.setErrorMessage( '', priceName);
+		switch (true) {
+			case (isNaN(val) || val < 0) :
+				return 'Введите неотрицательное число';
+			case (priceValue === '') : 
+				return 'Введите значение фильтра';
+			case ((priceName === 'maxPrice' && val < min) || (priceName === 'minPrice' && val > max)) :
+				return 'Максимальное значение фильтра меньше минимального';
+			default: 
+				return '';
 		}
 	}
 
@@ -59,9 +81,10 @@ class App extends React.Component  {
 				<Title>Список товаров</Title>
 				<Filter 
 					changeState = {this.changeState}
-					errorСhecking = {this.errorСhecking}
+					setErrorMessage = {this.setErrorMessage}
 					minPrice={this.state.minPrice}
 					maxPrice={this.state.maxPrice}
+					inputDisabled={this.state.inputDisabled}
 					minPriceError={this.state.minPriceError}
 					maxPriceError={this.state.maxPriceError}
 				/>

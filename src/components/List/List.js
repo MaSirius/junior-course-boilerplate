@@ -10,12 +10,12 @@ import styles from './List.module.css';
 
 class List extends logRender {
 	render() {
+		const {products, minPrice, maxPrice} = this.props;
 		return (
 			<ul className={styles.goodsList} > {
-				this.props.products
-				.filter(item => 
-					toInt(item.price) >= toInt(this.props.minPrice) && 
-					toInt(item.price) <= toInt(this.props.maxPrice)
+				products.filter(item => 
+					toInt(item.price) >= toInt(minPrice) && 
+					toInt(item.price) <= toInt(maxPrice)
 				)
 				.map((item) => ( 
 					<li className={styles.goodsList__item} key={item.id}>
